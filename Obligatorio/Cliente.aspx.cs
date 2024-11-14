@@ -136,13 +136,14 @@ namespace Obligatorio
                 return;  // Detiene la ejecución si la cédula no es válida
             }
 
-            foreach (Clientes clientee in Basededatos.misClientes)
+            // Validar que el nuevo CI no esté duplicado, omitiendo el cliente actual
+            for (int i = 0; i < Basededatos.misClientes.Count; i++)
             {
-                if (clientee.CI == nuevoCI)
+                if (i != index && Basededatos.misClientes[i].CI == nuevoCI)
                 {
                     lblMensaje.Text = "El número de cédula ya está registrado.";
                     lblMensaje.ForeColor = Color.Red;
-                    return;  // Detiene la ejecución si el CI ya está registrado
+                    return; // Detiene la ejecución si el CI ya está registrado en otro técnico
                 }
             }
 

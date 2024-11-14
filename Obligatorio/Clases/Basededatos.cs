@@ -13,5 +13,10 @@ namespace Obligatorio.Clases
             new Clientes{ Nombre="Elías", Apellido="Corajoría", CI= 12345678, Direccion="La BARRA", Email="elias@hotmail.com", Telefono=000000000}
         };
 
+        public static List<Tecnicos> misTecnicos = new List<Tecnicos>()
+        {
+            new Tecnicos{ Nombre="Jorge", Apellido="Perez", CI= 55188116, Especialidad="Electricista"},
+            new Tecnicos{ Nombre="Ana", Apellido="Morales", CI= 12345678, Especialidad="Diseñadora"}
+        };
     }
 }
