@@ -26,14 +26,45 @@ namespace Obligatorio
         // Este método se ejecuta cuando se hace clic en el botón "Agregar Cliente"
         protected void Button1_Click(object sender, EventArgs e)
         {
+            lblMensaje.Text = ""; // Limpiar el mensaje
+
+            int nuevoCI, nuevoTelefono=0;
+
+            // Validación de la cédula
+            if (!int.TryParse(txtCi.Text, out nuevoCI) || txtCi.Text.Length != 8)
+            {
+                lblMensaje.Text = "La cédula debe ser un número o tener 8 dígitos.";
+                lblMensaje.ForeColor = Color.Red;
+                return;  // Detiene la ejecución si la cédula no es válida
+            }
+
+            // Verificar si el CI ya está registrado
+            foreach (Clientes clientee in Basededatos.misClientes)
+            {
+                if (clientee.CI == nuevoCI)
+                {
+                    lblMensaje.Text = "El número de cédula ya está registrado.";
+                    lblMensaje.ForeColor = Color.Red;
+                    return;  // Detiene la ejecución si el CI ya está registrado
+                }
+            }
+
+            // Validación del teléfono
+            if (!string.IsNullOrEmpty(txtTelefono.Text) && !int.TryParse(txtTelefono.Text, out nuevoTelefono))
+            {
+                lblMensaje.Text = "El teléfono debe ser un número.";
+                lblMensaje.ForeColor = Color.Red;
+                return;  // Detiene la ejecución si el teléfono no es válido
+            }
+
             Clientes cliente = new Clientes() 
             {
 
                 Nombre = txtNombre.Text,
                 Apellido = txtApellido.Text,
-                CI = int.Parse(txtCi.Text),
+                CI = nuevoCI,
                 Direccion = txtDireccion.Text,
-                Telefono = int.Parse(txtTelefono.Text),
+                Telefono = nuevoTelefono,
                 Email = txtEmail.Text
 
             };
@@ -83,6 +114,8 @@ namespace Obligatorio
         // Maneja el evento de actualizar un cliente (cuando se hace clic en el botón "Actualizar")
         protected void gvCliente_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            lblMensaje.Text = ""; // Limpiar el mensaje
+
             // Obtén el índice de la fila que está siendo editada
             int index = e.RowIndex;
 
@@ -94,12 +127,40 @@ namespace Obligatorio
             TextBox txtTelefono = (TextBox)gvCliente.Rows[index].FindControl("txtTelefono");
             TextBox txtEmail = (TextBox)gvCliente.Rows[index].FindControl("txtEmail");
 
+            // Validación de la cédula
+            int nuevoCI;
+            if (!int.TryParse(txtCI.Text, out nuevoCI) || txtCI.Text.Length != 8)
+            {
+                lblMensaje.Text = "La cédula debe ser un número o tener 8 dígitos.";
+                lblMensaje.ForeColor = Color.Red;
+                return;  // Detiene la ejecución si la cédula no es válida
+            }
+
+            foreach (Clientes clientee in Basededatos.misClientes)
+            {
+                if (clientee.CI == nuevoCI)
+                {
+                    lblMensaje.Text = "El número de cédula ya está registrado.";
+                    lblMensaje.ForeColor = Color.Red;
+                    return;  // Detiene la ejecución si el CI ya está registrado
+                }
+            }
+
+            // Validación del teléfono
+            int nuevoTelefono;
+            if (!int.TryParse(txtTelefono.Text, out nuevoTelefono))
+            {
+                lblMensaje.Text = "El teléfono debe ser un número.";
+                lblMensaje.ForeColor = Color.Red;
+                return;  // Detiene la ejecución si el teléfono no es válido
+            }
+
             // Obtén los nuevos valores ingresados
             string nuevoNombre = txtNombre.Text;
             string nuevoApellido = txtApellido.Text;
-            int nuevoCI = int.Parse(txtCI.Text);
+            
             string nuevaDireccion = txtDireccion.Text;
-            int nuevoTelefono = int.Parse(txtTelefono.Text);
+            
             string nuevoEmail = txtEmail.Text;
 
             // Actualiza el cliente en la lista
@@ -117,6 +178,12 @@ namespace Obligatorio
             // Vuelve a enlazar los datos del GridView
             gvCliente.DataSource = Basededatos.misClientes;
             gvCliente.DataBind();
+
+            // Muestra mensaje de actualización correcta
+            
+            lblMensaje.Text = "El cliente se actualizó correctamente";
+            lblMensaje.ForeColor = Color.DarkGreen;
+
         }
 
 

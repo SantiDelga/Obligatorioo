@@ -100,5 +100,20 @@
     <br>
     <br>
     <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+
+<script type="text/javascript">
+    // Función para permitir solo números
+    function soloNumeros(event) {
+        var keyCode = event.which || event.keyCode;
+        // Permite la tecla de retroceso (backspace), los números y los signos de puntuación si se requieren (como el guión para teléfonos internacionales).
+        if (keyCode >= 48 && keyCode <= 57 || keyCode == 8) {
+            return true;
+        }
+        return false;
+    }
+</script>
+
    
 </asp:Content>
+
+
