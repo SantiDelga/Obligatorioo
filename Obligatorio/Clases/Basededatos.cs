@@ -18,5 +18,10 @@ namespace Obligatorio.Clases
             new Tecnicos{ Nombre="Jorge", Apellido="Perez", CI= 55188116, Especialidad="Electricista"},
             new Tecnicos{ Nombre="Ana", Apellido="Morales", CI= 12345678, Especialidad="Diseñadora"}
         };
+
+        public static List<OrdenDeTrabajo> misOrdenes = new List<OrdenDeTrabajo>()
+        {
+
+        };
     }
 }
