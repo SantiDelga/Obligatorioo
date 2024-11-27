@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="BuscarOrden.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -195,10 +196,18 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BuscarOrden.aspx.cs">
+      <DependentUpon>BuscarOrden.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BuscarOrden.aspx.designer.cs">
+      <DependentUpon>BuscarOrden.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Clases\Basededatos.cs" />
     <Compile Include="Clases\Clientes.cs" />
     <Compile Include="Clases\OrdenDeTrabajo.cs" />
     <Compile Include="Clases\Tecnicos.cs" />
+    <Compile Include="Clases\Validacion.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

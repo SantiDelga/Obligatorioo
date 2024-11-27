@@ -31,12 +31,14 @@ namespace Obligatorio
             int nuevoCI, nuevoTelefono=0;
 
             // Validación de la cédula
-            if (!int.TryParse(txtCi.Text, out nuevoCI) || txtCi.Text.Length != 8)
+            if (!Validacion.ValidarCedula(txtCi.Text))
             {
-                lblMensaje.Text = "La cédula debe ser un número o tener 8 dígitos.";
+                lblMensaje.Text = "La cédula no es válida.";
                 lblMensaje.ForeColor = Color.Red;
                 return;  // Detiene la ejecución si la cédula no es válida
             }
+
+            nuevoCI = int.Parse(txtCi.Text);
 
             // Verificar si el CI ya está registrado
             foreach (Clientes clientee in Basededatos.misClientes)
@@ -129,12 +131,14 @@ namespace Obligatorio
 
             // Validación de la cédula
             int nuevoCI;
-            if (!int.TryParse(txtCI.Text, out nuevoCI) || txtCI.Text.Length != 8)
+            if (!Validacion.ValidarCedula(txtCi.Text))
             {
-                lblMensaje.Text = "La cédula debe ser un número o tener 8 dígitos.";
+                lblMensaje.Text = "La cédula no es válida.";
                 lblMensaje.ForeColor = Color.Red;
                 return;  // Detiene la ejecución si la cédula no es válida
             }
+
+            nuevoCI = int.Parse(txtCi.Text);
 
             // Validar que el nuevo CI no esté duplicado, omitiendo el cliente actual
             for (int i = 0; i < Basededatos.misClientes.Count; i++)

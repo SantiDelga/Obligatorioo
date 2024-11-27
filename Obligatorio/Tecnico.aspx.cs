@@ -31,12 +31,14 @@ namespace Obligatorio
             int nuevoCI;
 
             // Validación de la cédula
-            if (!int.TryParse(txtCITecnico.Text, out nuevoCI) || txtCITecnico.Text.Length != 8)
+            if (!Validacion.ValidarCedula(txtCITecnico.Text))
             {
-                lblMensaje.Text = "La cédula debe ser un número o tener 8 dígitos.";
+                lblMensaje.Text = "La cédula no es válida.";
                 lblMensaje.ForeColor = Color.Red;
                 return;  // Detiene la ejecución si la cédula no es válida
             }
+
+            nuevoCI = int.Parse(txtCITecnico.Text);
 
             // Verificar si el CI ya está registrado
             foreach (Tecnicos tecnicoo in Basededatos.misTecnicos)
@@ -115,12 +117,14 @@ namespace Obligatorio
 
             // Validación de la cédula
             int nuevoCI;
-            if (!int.TryParse(txtCITecnico.Text, out nuevoCI) || txtCITecnico.Text.Length != 8)
+            if (!Validacion.ValidarCedula(txtCITecnico.Text))
             {
-                lblMensaje.Text = "La cédula debe ser un número o tener 8 dígitos.";
+                lblMensaje.Text = "La cédula no es válida.";
                 lblMensaje.ForeColor = Color.Red;
                 return;  // Detiene la ejecución si la cédula no es válida
             }
+
+            nuevoCI = int.Parse(txtCITecnico.Text);
 
             // Validar que el nuevo CI no esté duplicado, omitiendo el técnico actual
             for (int i = 0; i < Basededatos.misTecnicos.Count; i++)
