@@ -131,14 +131,14 @@ namespace Obligatorio
 
             // Validación de la cédula
             int nuevoCI;
-            if (!Validacion.ValidarCedula(txtCi.Text))
+            if (!Validacion.ValidarCedula(txtCI.Text))
             {
                 lblMensaje.Text = "La cédula no es válida.";
                 lblMensaje.ForeColor = Color.Red;
                 return;  // Detiene la ejecución si la cédula no es válida
             }
 
-            nuevoCI = int.Parse(txtCi.Text);
+            nuevoCI = int.Parse(txtCI.Text);
 
             // Validar que el nuevo CI no esté duplicado, omitiendo el cliente actual
             for (int i = 0; i < Basededatos.misClientes.Count; i++)

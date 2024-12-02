@@ -25,7 +25,7 @@ namespace Obligatorio
             {
                 lblMensaje.Text = "Ingrese un número de orden válido.";
                 lblMensaje.ForeColor= Color.Red;
-                panelDetalles.Visible = False;
+                panelDetalles.Visible = false;
                 return;
             }
 
@@ -34,16 +34,16 @@ namespace Obligatorio
             if (orden == null)
             {
                 lblMensaje.Text = "Orden no encontrada.";
-                panelDetalles.Visible = False;
+                panelDetalles.Visible = false;
                 return;
             }
 
             // Mostrar los detalles de la orden
             lblEstado.Text = $"Estado: {orden.Estado}";
-            lblCliente.Text = $"Cliente: {orden.Cliente.NombreCompleto}";
-            lblTecnico.Text = $"Técnico: {orden.Tecnico.NombreCompleto}";
-            lblComentarios.Text = $"Comentarios: {orden.Comentarios}";
-            panelDetalles.Visible = True;
+            lblCliente.Text = $"Cliente: {orden.Cliente}";
+            lblTecnico.Text = $"Técnico: {orden.Tecnico}";
+            lblComentarios.Text = $"Comentarios: {orden.ComentariosTecnico}";
+            panelDetalles.Visible = true;
             lblMensaje.Text = string.Empty;
         }
     }
